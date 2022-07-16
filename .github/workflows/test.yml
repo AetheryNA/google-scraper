@@ -33,9 +33,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: ${{ runner.os }}-crit-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-google-scraper-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-crit-node-
+            ${{ runner.os }}-google-scraper-node-
       - name: Install dependencies
         run: npm install
 
@@ -63,9 +63,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules/
-          key: ${{ runner.os }}-crit-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-google-scraper-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-crit-node-
+            ${{ runner.os }}-google-scraper-node-
       - name: Install dependencies
         run: npm install
 
@@ -96,9 +96,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules/
-          key: ${{ runner.os }}-crit-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-google-scraper-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-crit-node-
+            ${{ runner.os }}-google-scraper-node-
       - name: Install dependencies
         run: npm install
 
@@ -136,9 +136,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules/
-          key: ${{ runner.os }}-crit-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-google-scraper-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-crit-node-
+            ${{ runner.os }}-google-scraper-node-
       - name: Run UI tests
         uses: cypress-io/github-action@v2
         timeout-minutes: 10
