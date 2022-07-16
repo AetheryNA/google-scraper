@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 
 import ormconfig from 'ormconfig';
+import { AppController } from 'src/controllers/app.controller';
 
 const imports = [
   ConfigModule.forRoot({
@@ -14,7 +15,7 @@ const imports = [
 
 @Module({
   imports,
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule {
