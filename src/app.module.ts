@@ -1,10 +1,29 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
+
+import ormconfig from 'ormconfig';
+import { AppController } from 'src/controllers/app.controller';
+
+const imports = [
+  ConfigModule.forRoot({
+    isGlobal: true,
+    envFilePath: [`.env.${process.env.NODE_ENV}`, '.env'],
+  }),
+  TypeOrmModule.forRoot(ormconfig),
+];
 
 @Module({
-  imports: [],
+  imports,
   controllers: [AppController],
-  providers: [AppService],
+  providers: [],
 })
-export class AppModule {}
+export class AppModule {
+  onModuleInit(): void {
+    console.log('Initializing server');
+  }
+
+  onApplicationBootstrap(): void {
+    console.log('Server started');
+  }
+}
