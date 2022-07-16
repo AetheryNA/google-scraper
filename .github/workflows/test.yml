@@ -4,6 +4,8 @@ on: pull_request
 
 env:
   NODE_VERSION: "16"
+  NODE_ENV: test
+  POSTGRES_PASSWORD: 1234
 
 jobs:
   install_dependancies:
@@ -36,6 +38,7 @@ jobs:
           key: ${{ runner.os }}-google-scraper-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-google-scraper-node-
+
       - name: Install dependencies
         run: npm install
 
@@ -66,6 +69,7 @@ jobs:
           key: ${{ runner.os }}-google-scraper-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-google-scraper-node-
+
       - name: Install dependencies
         run: npm install
 
@@ -80,6 +84,13 @@ jobs:
     runs-on: ubuntu-latest
 
     timeout-minutes: 15
+    
+    services:
+      db:
+        image: postgres:14.4
+        ports: ['5432:5432']
+        env:
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
 
     steps: 
       - name: Checkout the repository
@@ -99,8 +110,12 @@ jobs:
           key: ${{ runner.os }}-google-scraper-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-google-scraper-node-
+
       - name: Install dependencies
         run: npm install
+
+      - name: Initialize Database
+        run: npm run db:create
 
       - name: Run tests
         run: npm test
@@ -121,6 +136,13 @@ jobs:
 
     timeout-minutes: 20
 
+    services:
+      db:
+        image: postgres:14.4
+        ports: ['5432:5432']
+        env:
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+
     steps: 
       - name: Checkout the repository
         uses: actions/checkout@v2
@@ -139,12 +161,17 @@ jobs:
           key: ${{ runner.os }}-google-scraper-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-google-scraper-node-
+
+      - name: Initialize Database
+        run: npm run db:create
+
       - name: Run UI tests
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4.1.0
         timeout-minutes: 10
         with:
           build: npm run build
           start: npm start
+          wait-on: 'http://localhost:3000'
           browser: chrome
 
       - name: Upload Test Artifacts
