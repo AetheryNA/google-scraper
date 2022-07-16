@@ -7,13 +7,13 @@ env:
 
 jobs:
   install_dependancies:
-    name: Install Dependencies
+    name: Install Dependancies
 
     runs-on: ubuntu-latest
 
     timeout-minutes: 10
 
-        steps:
+    steps:
       - name: Cancel previous runs
         uses: styfle/cancel-workflow-action@0.8.0
         with:
