@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 
 import ormconfig from 'ormconfig';
+import { UserModule } from 'src/modules/user.module';
 import { AppController } from 'src/controllers/app.controller';
 
 const imports = [
@@ -11,6 +12,7 @@ const imports = [
     envFilePath: [`.env.${process.env.NODE_ENV}`, '.env'],
   }),
   TypeOrmModule.forRoot(ormconfig),
+  UserModule,
 ];
 
 @Module({
