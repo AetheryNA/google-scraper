@@ -38,6 +38,9 @@ function buildConnectionOptions(
     entities: entitiesDir,
     synchronize: true,
     migrations: [__dirname + '/src/db/migrations/**/*{.ts,.js}'],
+    cli: {
+      migrationsDir: 'src/db/migrations',
+    },
   };
 }
 
