@@ -22,12 +22,12 @@ describe('Users Controller', () => {
     await app.close();
   });
 
-  describe('POST /api/users/register-user', () => {
+  describe('POST /users/register-user', () => {
     it('should register a new user', async () => {
       const newUser = createRandomUser();
 
       const response = await request(app.getHttpServer())
-        .post('/api/users/register-user')
+        .post('/users/register-user')
         .send(newUser);
 
       expect(response.statusCode).toBe(201);
@@ -43,7 +43,7 @@ describe('Users Controller', () => {
       const emptyData = {};
 
       const response = await request(app.getHttpServer())
-        .post('/api/users/register-user')
+        .post('/users/register-user')
         .send(emptyData);
 
       expect(response.statusCode).toBe(400);
@@ -59,11 +59,11 @@ describe('Users Controller', () => {
       const newUser = createRandomUser();
 
       await request(app.getHttpServer())
-        .post('/api/users/register-user')
+        .post('/users/register-user')
         .send(newUser);
 
       const response = await request(app.getHttpServer())
-        .post('/api/users/register-user')
+        .post('/users/register-user')
         .send(newUser);
 
       expect(response.statusCode).toBe(400);
