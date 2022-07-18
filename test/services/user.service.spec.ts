@@ -71,5 +71,23 @@ describe('User Service', () => {
         );
       }
     });
+
+    it('should find the added user', async () => {
+      const newUser = createRandomUser();
+
+      await createUser(nestApp, {
+        username: newUser.username,
+        password: newUser.password,
+      });
+
+      const findAddedUser = await service.findUser(newUser.username);
+
+      const manager = getManager();
+      const createdUser = await manager.findOneOrFail(Users, {
+        where: { username: newUser.username },
+      });
+
+      expect(createdUser.username).toEqual(findAddedUser.username);
+    });
   });
 });

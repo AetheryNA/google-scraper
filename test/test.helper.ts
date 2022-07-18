@@ -66,14 +66,14 @@ export async function createUser(nestApp, { username, password }: any) {
   let userRepository: Repository<Users>;
 
   const salt = await genSalt(5);
-  const encryptedPassword = await hash('password' || password, salt);
+  const encryptedPassword = await hash(password, salt);
 
   // eslint-disable-next-line prefer-const
   userRepository = nestApp.get('UsersRepository');
 
   const user = await userRepository.save(
     userRepository.create({
-      username: username || 'TestAccount',
+      username: username,
       password: encryptedPassword,
       createdAt: new Date(),
       updatedAt: new Date(),
