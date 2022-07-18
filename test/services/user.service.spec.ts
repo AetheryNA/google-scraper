@@ -1,9 +1,10 @@
 import { INestApplication } from '@nestjs/common';
-import { getManager } from 'typeorm';
+import { getManager, QueryFailedError } from 'typeorm';
 import { clearDB, createNestAppInstance, createUser } from '../test.helper';
 import { UserService } from 'src/services/user.service';
 import { Users } from 'src/entities/user.entity';
 import { expect } from '@jest/globals';
+import { createRandomUser } from '../fixtures/registerUser.fixture';
 import { genSalt, hash } from 'bcrypt';
 
 describe('User Service', () => {
@@ -33,35 +34,42 @@ describe('User Service', () => {
     });
 
     it('should create a new user', async () => {
+      const newUser = createRandomUser();
+
       await service.registerNewUser({
-        username: 'TestUser',
-        password: 'testpassword',
+        username: newUser.username,
+        password: newUser.password,
       });
 
       const manager = getManager();
       const createdUser = await manager.findOneOrFail(Users, {
-        where: { username: 'TestUser' },
+        where: { username: newUser.username },
       });
 
       expect(createdUser).toBeTruthy();
-      expect(createdUser.username).toEqual('TestUser');
+      expect(createdUser.username).toEqual(newUser.username);
     });
 
     it('should return an error if the username is taken', async () => {
+      const newUser = createRandomUser();
+
       await createUser(nestApp, {
-        username: 'TestUser',
-        password: 'testpassword',
+        username: newUser.username,
+        password: newUser.password,
       });
 
-      expect(
-        async () =>
-          await service.registerNewUser({
-            username: 'TestUser',
-            password: 'testpassword',
-          }),
-      ).rejects.toThrowError(
-        'QueryFailedError: duplicate key value violates unique constraint',
-      );
+      try {
+        await service.registerNewUser({
+          username: newUser.username,
+          password: newUser.password,
+        });
+      } catch (error) {
+        expect(error).toEqual(
+          new Error(
+            'duplicate key value violates unique constraint "UQ_fe0bb3f6520ee0469504521e710"',
+          ),
+        );
+      }
     });
   });
 });
