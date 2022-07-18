@@ -4,13 +4,22 @@ import {
   Body,
   HttpException,
   HttpStatus,
+  UnauthorizedException,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
+import { LocalAuthGuard } from 'src/common/guards/local-auth.guard';
 import { UserService } from 'src/services/user.service';
+import { AuthService } from 'src/services/auth.service';
 import { RegisterUser } from 'src/dto/registerUser.dto';
+import { LoginUser } from 'src/dto/loginUser.dto';
 
 @Controller('api/users')
 export class UserController {
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private authService: AuthService,
+  ) {}
 
   @Post('/register-user')
   async registerNewUser(@Body() registerUser: RegisterUser) {
@@ -30,5 +39,20 @@ export class UserController {
       });
 
     return `${username} has been created`;
+  }
+
+  @UseGuards(LocalAuthGuard)
+  @Post('/login-user')
+  async loginUser(@Body() loginUser: LoginUser, @Request() req) {
+    const verifyLogin = await this.authService.validateUser(
+      loginUser.username,
+      loginUser.password,
+    );
+
+    if (verifyLogin) {
+      return req.user;
+    } else {
+      throw new UnauthorizedException();
+    }
   }
 }

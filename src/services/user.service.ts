@@ -27,4 +27,10 @@ export class UserService {
 
     await this.usersRepository.save(createNewUser);
   }
+
+  async findUser(username: string): Promise<any> {
+    return await this.usersRepository.findOneOrFail({
+      where: { username: username },
+    });
+  }
 }
