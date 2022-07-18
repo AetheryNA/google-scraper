@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { genSalt, hash } from 'bcrypt';
 import { Users } from 'src/entities/user.entity';
-import { EntityManager, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { UserParams } from 'src/common/types/userParams';
 
 @Injectable()
@@ -10,11 +10,12 @@ export class UserService {
   constructor(
     @InjectRepository(Users)
     private usersRepository: Repository<Users>,
-    private readonly entityManager: EntityManager,
   ) {}
 
   async registerNewUser(userParams: UserParams): Promise<void> {
     const { username, password } = userParams;
+
+    if (username == '') throw new Error('Username field cannot be empty');
 
     const salt = await genSalt(5);
     const encryptedPassword = await hash(password, salt);
