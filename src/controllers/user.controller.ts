@@ -6,9 +6,9 @@ import {
   HttpStatus,
   UnauthorizedException,
   Request,
-  UseGuards,
+  Res,
 } from '@nestjs/common';
-import { LocalAuthGuard } from 'src/common/guards/local-auth.guard';
+import { Response } from 'express';
 import { UserService } from 'src/services/user.service';
 import { AuthService } from 'src/services/auth.service';
 import { RegisterUser } from 'src/dto/registerUser.dto';
@@ -41,15 +41,20 @@ export class UserController {
     return `${username} has been created`;
   }
 
-  @UseGuards(LocalAuthGuard)
   @Post('/login-user')
-  async loginUser(@Body() loginUser: LoginUser, @Request() req) {
+  async loginUser(
+    @Body() loginUser: LoginUser,
+    @Request() req,
+    @Res() res: Response,
+  ) {
     const verifyLogin = await this.authService.validateUser(
       loginUser.username,
       loginUser.password,
     );
 
     if (verifyLogin) {
+      res.redirect('/dashboard');
+
       return req.user;
     } else {
       throw new UnauthorizedException();
