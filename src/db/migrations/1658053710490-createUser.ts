@@ -42,5 +42,5 @@ export class createUser1658053710490 implements MigrationInterface {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  public async down(queryRunner: QueryRunner): Promise<void> {}
+  public async down(_queryRunner: QueryRunner): Promise<void> {}
 }

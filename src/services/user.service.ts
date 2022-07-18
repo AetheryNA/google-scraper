@@ -15,8 +15,6 @@ export class UserService {
   async registerNewUser(userParams: UserParams): Promise<void> {
     const { username, password } = userParams;
 
-    if (username == '') throw new Error('Username field cannot be empty');
-
     const salt = await genSalt(5);
     const encryptedPassword = await hash(password, salt);
 

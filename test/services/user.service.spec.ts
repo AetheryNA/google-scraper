@@ -47,13 +47,6 @@ describe('User Service', () => {
       expect(createdUser.username).toEqual('TestUser');
     });
 
-    it('should return an error if all fields are empty', async () => {
-      await expect(
-        async () =>
-          await service.registerNewUser({ username: '', password: '' }),
-      ).rejects.toThrowError(Error);
-    });
-
     it('should return an error if the username is taken', async () => {
       await createUser(nestApp, {
         username: 'TestUser',
@@ -66,7 +59,9 @@ describe('User Service', () => {
             username: 'TestUser',
             password: 'testpassword',
           }),
-      ).rejects.toThrowError(Error);
+      ).rejects.toThrowError(
+        'QueryFailedError: duplicate key value violates unique constraint',
+      );
     });
   });
 });
