@@ -1,6 +1,7 @@
 <section class="auth-form">
   <div class="auth-form__container">
-    <h1> Login in to Continue </h1>
+    <h2> Welcome! </h2>
+    <h1> Login to Continue </h1>
 
     <form method="POST" action="/users/login-user" class="auth-form__form">
       <div class="auth-form__input">
@@ -10,12 +11,12 @@
 
       <div class="auth-form__input">
         <label for="password">Password</label>
-        <input name="password" id="password" type="text" class="auth-form__password">
+        <input name="password" id="password" type="password" class="auth-form__password">
       </div>
 
-      <span> Don't have an account? <a href="/users/sign-up">Click me!</a></span>
+      <button type="submit" class="button button--primary auth-form__button">Login</button>
 
-      <button type="submit" class="auth-form__button">Login</button>
+      <span> Don't have an account? <a href="/users/sign-up">Click me!</a></span>
     </form>
   </div>
 </section>

@@ -1,0 +1,14 @@
+.button {
+  @apply w-full py-3;
+
+  &--primary {
+    @apply bg-gradient-to-r from-indigo via-purple to-pink transition-all text-white-default font-medium uppercase;
+
+    border-radius: 40px;
+    opacity: 1;
+
+    &:hover {
+      opacity: .8;
+    }
+  }
+}
