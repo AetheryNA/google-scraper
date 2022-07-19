@@ -29,13 +29,13 @@ export class UserController {
   @Get('/sign-up')
   @Render('sign-up')
   async renderSignUp() {
-    return { message: 'Hello there' };
+    return null;
   }
 
   @Get('/sign-in')
   @Render('sign-in')
   async renderSignIn() {
-    return { message: 'Hello there' };
+    return null;
   }
 
   @Post('/register-user')

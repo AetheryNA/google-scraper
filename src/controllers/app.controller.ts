@@ -5,6 +5,6 @@ export class AppController {
   @Get()
   @Render('home')
   root() {
-    return { message: 'Hello world!' };
+    return null;
   }
 }
