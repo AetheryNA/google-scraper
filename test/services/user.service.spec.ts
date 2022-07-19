@@ -1,5 +1,5 @@
 import { INestApplication } from '@nestjs/common';
-import { getManager, QueryFailedError } from 'typeorm';
+import { getManager } from 'typeorm';
 import { clearDB, createNestAppInstance, createUser } from '../test.helper';
 import { UserService } from 'src/services/user.service';
 import { Users } from 'src/entities/user.entity';

@@ -4,12 +4,12 @@ import { UserService } from 'src/services/user.service';
 
 @Controller('dashboard')
 export class DashboardController {
-  constructor(private userService: UserService) {}
+  constructor(private _userService: UserService) {}
 
   @UseGuards(LocalAuthGuard)
   @Get('/home')
   @Render('dashboard')
   async renderDashboard() {
-    return { message: 'hello world' };
+    return null;
   }
 }
