@@ -1,14 +1,6 @@
 import { createRandomUser } from '../fixtures/regisiterUser.fixture';
 
 describe('Users page', () => {
-  it('should visit the login form', () => {
-    cy.visit('/users/sign-in');
-  });
-
-  it('should visit the register form', () => {
-    cy.visit('/users/sign-up');
-  });
-
   it('should find the form in the sign in page', () => {
     cy.visit('/users/sign-in');
 
