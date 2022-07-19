@@ -4,7 +4,7 @@
 
     <div class="dashboard__head">
       <h3>Dashboard</h3>
-      <form class="dashboard__file-form" action="/dashboard/upload-file" method="post" accept=".csv" onsubmit="submitCSV();">
+      <form class="dashboard__file-form" action="/dashboard/upload-file" method="post" accept=".csv">
         <span> Upload a CSV file </span>
         <input type="file" name="file" class="dashboard__upload-file" />
         <button class="dashboard__submit-upload" type="submit"> Upload file </button>
@@ -24,12 +24,3 @@
     </div>
   </div>
 </section>
-
-<script type="text/javascript">
-  function submitCSV() {
-    const formData = new FormData()
-    const getFile = document.querySelector('dashboard__upload-file')
-
-    formData.append('file', getFile);
-  }
-</script>
