@@ -39,7 +39,10 @@ export class UserController {
   }
 
   @Post('/register-user')
-  async registerNewUser(@Body() registerUser: RegisterUser) {
+  async registerNewUser(
+    @Body() registerUser: RegisterUser,
+    @Res() res: Response,
+  ) {
     const { username, password } = registerUser;
 
     await this.userService
@@ -55,6 +58,7 @@ export class UserController {
           );
       });
 
+    res.redirect('/');
     return `${username} has been created`;
   }
 

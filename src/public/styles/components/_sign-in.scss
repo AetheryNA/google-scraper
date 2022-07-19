@@ -10,7 +10,7 @@
   &__container {
     @apply flex flex-col rounded shadow py-2.5 px-5 justify-evenly top-1/2 absolute w-full bg-white;
 
-    height: 40%;
+    height: 500px;
     transform: translateY(-50%);
   }
 
@@ -33,6 +33,14 @@
 
     input {
       @apply border-indigo border-2 p-2 ml-auto;
+    }
+  }
+
+  span {
+    @apply text-center mb-5;
+
+    a {
+      @apply text-blue;
     }
   }
 

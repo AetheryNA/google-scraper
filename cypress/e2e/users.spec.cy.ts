@@ -1,6 +1,15 @@
 import { createRandomUser } from '../fixtures/regisiterUser.fixture';
 
 describe('Users page', () => {
+  const registerNewUser = (createUser: any) => {
+    cy.visit('/users/sign-up');
+
+    cy.get('.auth-form__username').type(createUser.username);
+    cy.get('.auth-form__password').type(createUser.password);
+
+    cy.get('.auth-form__button').click();
+  };
+
   it('should find the form in the sign in page', () => {
     cy.visit('/users/sign-in');
 
@@ -16,31 +25,25 @@ describe('Users page', () => {
   it('should be able to select input fields and click sign up button', () => {
     const newUser = createRandomUser();
 
-    cy.visit('/users/sign-up');
+    registerNewUser(newUser);
 
-    cy.get('.auth-form__username').type(newUser.username);
-    cy.get('.auth-form__password').type(newUser.password);
-
-    cy.get('.auth-form__button').click();
+    cy.location().should((location) => {
+      expect(location.pathname).to.eq('/');
+    });
   });
 
   it('should be able to select input fields and click sign in button', () => {
     const newUser = createRandomUser();
 
-    cy.visit('/users/sign-up');
+    registerNewUser(newUser);
 
     cy.get('.auth-form__username').type(newUser.username);
     cy.get('.auth-form__password').type(newUser.password);
 
     cy.get('.auth-form__button').click();
 
-    cy.visit('/users/sign-in');
-
-    cy.get('.auth-form__username').type(newUser.username);
-    cy.get('.auth-form__password').type(newUser.password);
-
-    cy.get('.auth-form__button').click();
-
-    cy.visit('/dashboard/home');
+    cy.location().should((location) => {
+      expect(location.pathname).to.eq('/dashboard/home');
+    });
   });
 });
