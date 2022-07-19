@@ -1,15 +1,7 @@
 import { createRandomUser } from '../fixtures/regisiterUser.fixture';
+import { registerNewUser } from '../test.helper';
 
 describe('Users page', () => {
-  const registerNewUser = (createUser: any) => {
-    cy.visit('/users/sign-up');
-
-    cy.get('.auth-form__username').type(createUser.username);
-    cy.get('.auth-form__password').type(createUser.password);
-
-    cy.get('.auth-form__button').click();
-  };
-
   it('should find the form in the sign in page', () => {
     cy.visit('/users/sign-in');
 
