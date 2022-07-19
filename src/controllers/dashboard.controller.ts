@@ -6,9 +6,6 @@ import {
   UploadedFile,
   UseGuards,
   UseInterceptors,
-  ParseFilePipe,
-  FileTypeValidator,
-  Header,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthenticatedGuard } from 'src/common/guards/authenticated.guard';
