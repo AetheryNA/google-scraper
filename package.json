@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@golevelup/ts-jest": "^0.3.3",
-    "@nestjs/common": "^8.0.0",
+    "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/passport": "^9.0.0",
@@ -74,6 +74,7 @@
     "@types/express-session": "^1.17.5",
     "@types/gulp": "^4.0.9",
     "@types/jest": "27.4.1",
+    "@types/multer": "^1.4.7",
     "@types/node": "^16.0.0",
     "@types/passport-local": "^1.0.34",
     "@types/supertest": "^2.0.11",
