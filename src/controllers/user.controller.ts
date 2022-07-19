@@ -7,12 +7,17 @@ import {
   UnauthorizedException,
   Request,
   Res,
+  Session,
+  Get,
+  Render,
+  UseGuards,
 } from '@nestjs/common';
 import { Response } from 'express';
 import { UserService } from 'src/services/user.service';
 import { AuthService } from 'src/services/auth.service';
 import { RegisterUser } from 'src/dto/registerUser.dto';
 import { LoginUser } from 'src/dto/loginUser.dto';
+import { LocalAuthGuard } from 'src/common/guards/local-auth.guard';
 
 @Controller('users')
 export class UserController {
@@ -20,6 +25,18 @@ export class UserController {
     private userService: UserService,
     private authService: AuthService,
   ) {}
+
+  @Get('/sign-up')
+  @Render('sign-up')
+  async renderSignUp() {
+    return { message: 'Hello there' };
+  }
+
+  @Get('/sign-in')
+  @Render('sign-in')
+  async renderSignIn() {
+    return { message: 'Hello there' };
+  }
 
   @Post('/register-user')
   async registerNewUser(@Body() registerUser: RegisterUser) {
@@ -41,11 +58,13 @@ export class UserController {
     return `${username} has been created`;
   }
 
+  @UseGuards(LocalAuthGuard)
   @Post('/login-user')
   async loginUser(
     @Body() loginUser: LoginUser,
     @Request() req,
     @Res() res: Response,
+    @Session() session: any,
   ) {
     const verifyLogin = await this.authService.validateUser(
       loginUser.username,
@@ -53,7 +72,9 @@ export class UserController {
     );
 
     if (verifyLogin) {
-      res.redirect('/dashboard');
+      session.authenticated = true;
+
+      res.redirect('/dashboard/home');
 
       return req.user;
     } else {

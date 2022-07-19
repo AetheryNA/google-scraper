@@ -1,12 +1,12 @@
 import { Controller, Get, Render, UseGuards } from '@nestjs/common';
-import { LocalAuthGuard } from 'src/common/guards/local-auth.guard';
+import { AuthenticatedGuard } from 'src/common/guards/authenticated.guard';
 import { UserService } from 'src/services/user.service';
 
 @Controller('dashboard')
 export class DashboardController {
   constructor(private _userService: UserService) {}
 
-  @UseGuards(LocalAuthGuard)
+  @UseGuards(AuthenticatedGuard)
   @Get('/home')
   @Render('dashboard')
   async renderDashboard() {
