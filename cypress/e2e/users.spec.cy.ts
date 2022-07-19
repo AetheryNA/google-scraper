@@ -5,7 +5,7 @@ describe('Users page', () => {
   it('should find the form in the sign in page', () => {
     cy.visit('/users/sign-in');
 
-    cy.get('.auth-form').contains('h1', 'Login in to Continue');
+    cy.get('.auth-form').contains('h1', 'Login to Continue');
   });
 
   it('should find the form in the sign up page', () => {
