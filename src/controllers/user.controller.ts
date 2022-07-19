@@ -4,13 +4,22 @@ import {
   Body,
   HttpException,
   HttpStatus,
+  UnauthorizedException,
+  Request,
+  Res,
 } from '@nestjs/common';
+import { Response } from 'express';
 import { UserService } from 'src/services/user.service';
+import { AuthService } from 'src/services/auth.service';
 import { RegisterUser } from 'src/dto/registerUser.dto';
+import { LoginUser } from 'src/dto/loginUser.dto';
 
-@Controller('api/users')
+@Controller('users')
 export class UserController {
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private authService: AuthService,
+  ) {}
 
   @Post('/register-user')
   async registerNewUser(@Body() registerUser: RegisterUser) {
@@ -30,5 +39,25 @@ export class UserController {
       });
 
     return `${username} has been created`;
+  }
+
+  @Post('/login-user')
+  async loginUser(
+    @Body() loginUser: LoginUser,
+    @Request() req,
+    @Res() res: Response,
+  ) {
+    const verifyLogin = await this.authService.validateUser(
+      loginUser.username,
+      loginUser.password,
+    );
+
+    if (verifyLogin) {
+      res.redirect('/dashboard');
+
+      return req.user;
+    } else {
+      throw new UnauthorizedException();
+    }
   }
 }
