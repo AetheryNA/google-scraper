@@ -1,30 +1,48 @@
 .auth-form {
   @apply mx-auto h-full max-w-md relative;
 
-  h1 {
+  h1,
+  h2 {
     @apply text-xl font-semibold text-center;
+  }
+
+  h2 {
+    @apply mb-2.5;
+
+    margin-top: 10%;
+    font-size: 20px;
+  }
+
+  h1 {
+    @apply mb-5;
 
     font-size: 24px;
   }
 
   &__container {
-    @apply flex flex-col rounded shadow py-2.5 px-5 justify-evenly top-1/2 absolute w-full bg-white;
+    @apply flex flex-col rounded shadow py-2.5 px-5 justify-evenly top-1/2 absolute w-full bg-white-default;
 
     height: 500px;
     transform: translateY(-50%);
   }
 
   &__form {
-    @apply flex flex-col mx-auto;
+    @apply flex flex-col mb-0 px-5 h-full;
 
-    max-width: 75%;
+    margin-top: 12%;
+
+    @screen md {
+      @apply px-8;
+    }
   }
 
   &__input {
-    @apply mb-7 flex justify-center items-center;
+    @apply mb-7 mx-auto text-sm flex justify-center items-center border-b-2 border-black-default w-full;
+
+    max-width: 90%;
 
     &:last-child {
-      @apply mb-5;
+      margin-bottom: 50px;
     }
 
     label {
@@ -32,21 +50,15 @@
     }
 
     input {
-      @apply border-indigo border-2 p-2 ml-auto;
+      @apply p-2 ml-auto outline-none border-none w-full;
     }
   }
 
   span {
-    @apply text-center mb-5;
+    @apply mt-auto text-sm text-center mb-2.5 font-light;
 
     a {
-      @apply text-blue;
+      @apply font-medium;
     }
-  }
-
-  button {
-    @apply py-2.5 px-5 mx-auto bg-blue text-white rounded-md;
-
-    max-width: 250px;
   }
 }

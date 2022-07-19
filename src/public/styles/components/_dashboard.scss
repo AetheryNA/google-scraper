@@ -2,15 +2,46 @@
   @apply pt-5;
 
   &__container {
-    @apply bg-white p-2.5;
+    @apply p-2.5;
 
     h1 {
       @apply text-xl;
     }
   }
 
+  &__top {
+    h1 {
+      @apply font-light uppercase text-4xl;
+
+      margin-top: 10%;
+
+      @screen md {
+        font-size: 55px;
+      }
+    }
+  }
+
+  &__top-para {
+    @apply mt-9 text-xl text-blue-default;
+
+    @screen md {
+      @apply text-4xl;
+    }
+  }
+
+  &__top-under-para {
+    @apply mt-5 text-xl;
+  }
+
+  &__line {
+    @apply bg-gradient-to-r from-indigo via-purple to-pink w-full flex mt-14;
+
+    height: 10px;
+    max-width: 20%;
+  }
+
   &__head {
-    @apply mt-7 flex flex-row justify-between;
+    @apply mt-20 flex flex-col;
   }
 
   &__file-form {
@@ -26,7 +57,7 @@
   }
 
   &__submit-upload {
-    @apply p-2 bg-indigo text-white rounded-md;
+    @apply p-2 bg-indigo text-white-default rounded-md;
   }
 
   &__table {
@@ -38,7 +69,7 @@
   }
 
   &__item {
-    @apply mr-2 p-1.5 rounded-md bg-indigo text-white;
+    @apply mr-2 p-1.5 rounded-md bg-indigo text-white-default;
 
     &:last-child {
       @apply mr-0;
