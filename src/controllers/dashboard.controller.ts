@@ -8,12 +8,11 @@ import {
   UseInterceptors,
   ParseFilePipe,
   FileTypeValidator,
+  Header,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { readFileSync } from 'fs';
 import { AuthenticatedGuard } from 'src/common/guards/authenticated.guard';
 import { UserService } from 'src/services/user.service';
-import { diskStorage } from 'multer';
 
 @Controller('dashboard')
 export class DashboardController {
@@ -28,15 +27,14 @@ export class DashboardController {
 
   @UseGuards(AuthenticatedGuard)
   @Post('/upload-file')
+  @Render('dashboard')
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(
-    @UploadedFile(
-      new ParseFilePipe({
-        validators: [new FileTypeValidator({ fileType: 'csv' })],
-      }),
-    )
+    @UploadedFile()
     file: Express.Multer.File,
   ) {
-    return file;
+    return {
+      success: 'File uploaded successfully',
+    };
   }
 }
