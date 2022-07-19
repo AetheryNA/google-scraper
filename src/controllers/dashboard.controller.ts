@@ -9,11 +9,11 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthenticatedGuard } from 'src/common/guards/authenticated.guard';
-import { UserService } from 'src/services/user.service';
+import { DashboardService } from 'src/services/dashboard.service';
 
 @Controller('dashboard')
 export class DashboardController {
-  constructor(private _userService: UserService) {}
+  constructor(private dashboardService: DashboardService) {}
 
   @UseGuards(AuthenticatedGuard)
   @Get('/home')
@@ -30,8 +30,6 @@ export class DashboardController {
     @UploadedFile()
     file: Express.Multer.File,
   ) {
-    return {
-      success: 'File uploaded successfully',
-    };
+    return this.dashboardService.parseData(file);
   }
 }
