@@ -1,0 +1,21 @@
+<section class="auth-form">
+  <div class="auth-form__container">
+    <h1> Create a new account </h1>
+
+    <form method="POST" action="/users/register-user" class="auth-form__form">
+      <div class="auth-form__input">
+        <label for="username">Username</label>
+        <input name="username" id="username" type="text" class="auth-form__username">
+      </div>
+
+      <div class="auth-form__input">
+        <label for="password">Password</label>
+        <input name="password" id="password" type="text" class="auth-form__password">
+      </div>
+
+      <span> Have an account? <a href="/">Click me!</a></span>
+
+      <button type="submit" class="auth-form__button">Register</button>
+    </form>
+  </div>
+</section>

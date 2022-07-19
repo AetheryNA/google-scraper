@@ -1,0 +1,52 @@
+.auth-form {
+  @apply mx-auto h-full max-w-md relative;
+
+  h1 {
+    @apply text-xl font-semibold text-center;
+
+    font-size: 24px;
+  }
+
+  &__container {
+    @apply flex flex-col rounded shadow py-2.5 px-5 justify-evenly top-1/2 absolute w-full bg-white;
+
+    height: 500px;
+    transform: translateY(-50%);
+  }
+
+  &__form {
+    @apply flex flex-col mx-auto;
+
+    max-width: 75%;
+  }
+
+  &__input {
+    @apply mb-7 flex justify-center items-center;
+
+    &:last-child {
+      @apply mb-5;
+    }
+
+    label {
+      @apply mr-2.5;
+    }
+
+    input {
+      @apply border-indigo border-2 p-2 ml-auto;
+    }
+  }
+
+  span {
+    @apply text-center mb-5;
+
+    a {
+      @apply text-blue;
+    }
+  }
+
+  button {
+    @apply py-2.5 px-5 mx-auto bg-blue text-white rounded-md;
+
+    max-width: 250px;
+  }
+}
