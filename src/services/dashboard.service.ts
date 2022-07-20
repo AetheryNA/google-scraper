@@ -37,9 +37,6 @@ export class DashboardService {
       const saveKeyword = this.keywordsRepository.create({
         user: findUser,
         keyword: keyword[0],
-        total_ads: 0,
-        total_links: 0,
-        total_search_results: '',
         html_of_page: '',
         createdAt: new Date(),
         updatedAt: new Date(),

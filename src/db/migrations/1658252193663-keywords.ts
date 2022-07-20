@@ -31,17 +31,17 @@ export class keywords1658252193663 implements MigrationInterface {
           {
             name: 'total_ads',
             type: 'int',
-            isNullable: false,
+            isNullable: true,
           },
           {
             name: 'total_links',
             type: 'int',
-            isNullable: false,
+            isNullable: true,
           },
           {
             name: 'total_search_results',
             type: 'varchar',
-            isNullable: false,
+            isNullable: true,
           },
           {
             name: 'html_of_page',
