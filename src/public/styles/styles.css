@@ -780,12 +780,22 @@ a:hover {
 .dashboard__item {
   margin-right: 0.5rem;
   border-radius: 0.375rem;
-  --tw-bg-opacity: 1;
-  background-color: rgb(99 102 241 / var(--tw-bg-opacity));
   padding: 0.375rem;
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 .dashboard__item:last-child {
   margin-right: 0px;
+}
+.dashboard__item:nth-child(1n) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(99 102 241 / var(--tw-bg-opacity));
+}
+.dashboard__item:nth-child(2n) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(168 85 247 / var(--tw-bg-opacity));
+}
+.dashboard__item:nth-child(3n) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(236 72 153 / var(--tw-bg-opacity));
 }
