@@ -22,16 +22,24 @@ export class Keywords {
   @ManyToOne(() => Users, (user) => user.keyword)
   user: Users;
 
-  @Column()
+  @Column({
+    nullable: true,
+  })
   total_ads: number;
 
-  @Column()
+  @Column({
+    nullable: true,
+  })
   total_links: number;
 
-  @Column()
+  @Column({
+    nullable: true,
+  })
   total_search_results: string;
 
-  @Column()
+  @Column({
+    nullable: true,
+  })
   html_of_page: string;
 
   @CreateDateColumn({ default: () => 'now()', name: 'created_at' })

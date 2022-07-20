@@ -42,7 +42,7 @@ export class DashboardController {
 
       return {
         keywords: keywordsFromCSV,
-        message: 'File uploaded succssfully',
+        message: 'File uploaded successfully',
       };
     } else throw new Error('File cannot be uploaded');
   }
