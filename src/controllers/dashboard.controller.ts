@@ -46,4 +46,12 @@ export class DashboardController {
       };
     } else throw new Error('File cannot be uploaded');
   }
+
+  @Get('/get-axios-data')
+  async scrapedData() {
+    const foundHTML =
+      await this.dashboardService.searchGooglePageAndReturnHTML();
+
+    return await this.dashboardService.getTotalResults(foundHTML);
+  }
 }

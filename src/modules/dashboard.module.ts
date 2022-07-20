@@ -4,9 +4,10 @@ import { UserModule } from './user.module';
 import { DashboardService } from 'src/services/dashboard.service';
 import { Keywords } from 'src/entities/keywords.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
-  imports: [UserModule, TypeOrmModule.forFeature([Keywords])],
+  imports: [UserModule, TypeOrmModule.forFeature([Keywords]), HttpModule],
   providers: [DashboardService],
   controllers: [DashboardController],
 })
