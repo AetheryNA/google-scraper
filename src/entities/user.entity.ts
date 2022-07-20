@@ -4,12 +4,14 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
+import { Keywords } from './keywords.entity';
 
 @Entity('users')
 export class Users {
   @PrimaryGeneratedColumn()
-  user_id: number;
+  id: number;
 
   @Column({ unique: true })
   username: string;
@@ -22,4 +24,7 @@ export class Users {
 
   @UpdateDateColumn({ default: () => 'now()', name: 'updated_at' })
   updatedAt: Date;
+
+  @OneToMany(() => Keywords, (keyword) => keyword.user)
+  keyword: Keywords[];
 }
