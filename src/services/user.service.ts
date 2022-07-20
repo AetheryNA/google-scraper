@@ -33,4 +33,10 @@ export class UserService {
       where: { username: username },
     });
   }
+
+  async findUserById(userId: number): Promise<any> {
+    return await this.usersRepository.findOneOrFail({
+      where: { id: userId },
+    });
+  }
 }
