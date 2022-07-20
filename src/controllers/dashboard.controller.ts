@@ -6,6 +6,7 @@ import {
   UploadedFile,
   UseGuards,
   UseInterceptors,
+  Req,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthenticatedGuard } from 'src/common/guards/authenticated.guard';
@@ -29,7 +30,20 @@ export class DashboardController {
   async uploadFile(
     @UploadedFile()
     file: Express.Multer.File,
+    @Req() req,
   ) {
-    return this.dashboardService.parseData(file);
+    const keywordsFromCSV = await this.dashboardService.parseData(file);
+
+    if (keywordsFromCSV) {
+      await this.dashboardService.saveParsedDataToDatabase(
+        keywordsFromCSV,
+        req.user.id,
+      );
+
+      return {
+        keywords: keywordsFromCSV,
+        message: 'File uploaded succssfully',
+      };
+    } else throw new Error('File cannot be uploaded');
   }
 }

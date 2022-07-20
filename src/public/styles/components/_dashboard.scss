@@ -69,7 +69,7 @@
   }
 
   &__item {
-    @apply mr-2 p-1.5 rounded-md bg-indigo text-white-default;
+    @apply mr-2 p-1.5 rounded-md text-white-default bg-indigo;
 
     &:last-child {
       @apply mr-0;

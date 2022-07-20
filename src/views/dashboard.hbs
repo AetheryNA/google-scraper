@@ -13,7 +13,7 @@
         <span> Upload a CSV file </span>
         <input type="file" name="file" class="dashboard__upload-file" />
         <button class="dashboard__submit-upload" type="submit"> Upload file </button>
-        <p class="dashboard__success-msg">{{ success }}</p>
+        <p class="dashboard__success-msg">{{ message }}</p>
       </form>
     </div>
 
@@ -21,7 +21,7 @@
       <h3> Results </h3>
       <ul class="dashboard__keywords">
         {{#each keywords}}
-          <li class="dashboard__item dashboard__item--{{@index}}">{{ this.keyword }}</li>
+          <li class="dashboard__item dashboard__item--{{@index}}">{{this}}</li>
         {{/each}}
       </ul>
 
