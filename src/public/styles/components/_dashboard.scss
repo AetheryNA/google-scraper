@@ -2,7 +2,7 @@
   @apply pt-5;
 
   &__container {
-    @apply p-2.5;
+    @apply py-2.5;
 
     h1 {
       @apply text-xl;
@@ -10,10 +10,14 @@
   }
 
   &__top {
+    margin-top: 65px;
+
+    @screen md {
+      margin-top: 160px;
+    }
+
     h1 {
       @apply font-light uppercase text-4xl;
-
-      margin-top: 10%;
 
       @screen md {
         font-size: 55px;
@@ -44,8 +48,36 @@
     @apply mt-20 flex flex-col;
   }
 
+  &__navigation {
+    @apply flex flex-row;
+
+    > li {
+      @apply text-2xl font-thin mb-10 mr-7;
+
+      @screen md {
+        @apply text-4xl mr-14;
+
+        margin-bottom: 50px;
+      }
+
+      &:last-child {
+        @apply mr-0;
+      }
+
+      a {
+        @apply text-black-default;
+
+        &:hover {
+          @apply text-indigo;
+        }
+      }
+    }
+  }
+
   &__file-form {
-    @apply flex flex-col items-start;
+    @apply flex flex-col items-start p-5 bg-white-default rounded shadow;
+
+    max-width: 300px;
 
     span {
       @apply mb-2.5 italic;
@@ -57,15 +89,23 @@
   }
 
   &__submit-upload {
-    @apply p-2 bg-indigo text-white-default rounded-md;
+    @apply rounded-md;
+  }
+
+  &__success-msg {
+    @apply mt-2.5 text-indigo;
   }
 
   &__table {
     @apply mt-8;
+
+    h3 {
+      @apply mb-2.5 text-2xl font-light;
+    }
   }
 
   &__keywords {
-    @apply flex flex-row flex-wrap;
+    @apply flex flex-row flex-wrap mb-5;
   }
 
   &__item {
@@ -73,6 +113,51 @@
 
     &:last-child {
       @apply mr-0;
+    }
+  }
+
+  &__results {
+    @apply p-3 rounded bg-white-default shadow;
+
+    @screen md {
+      @apply p-5;
+    }
+  }
+
+  &__results-item {
+    @apply flex flex-row items-start justify-between border-b border-black-default border-opacity-10 mb-2.5;
+
+    h4 {
+      @apply text-lg;
+    }
+
+    &:first-child {
+      h4,
+      p {
+        @apply font-bold;
+      }
+    }
+
+    &:last-child {
+      @apply mb-0;
+    }
+  }
+
+  &__results-totals {
+    @apply grid grid-cols-4;
+
+    max-width: 555px;
+
+    a {
+      @apply ml-auto flex justify-center items-center p-1.5 rounded-md;
+
+      font-size: 12px;
+      height: 35px;
+      max-width: 85%;
+
+      &:hover {
+        @apply text-white-default;
+      }
     }
   }
 }
