@@ -12,7 +12,7 @@
         <li><a href="/dashboard/home">Dashboard</a></li>
         <li><a href="/searches">My Searches</a></li>
       </ul>
-      <form class="dashboard__file-form" action="/dashboard/upload-file" method="post" accept=".csv" enctype="multipart/form-data">
+      <form class="dashboard__file-form" action="/dashboard/upload-file-and-scrape-data" method="post" accept=".csv" enctype="multipart/form-data">
         <span> Upload a CSV file </span>
         <input type="file" name="file" class="dashboard__upload-file" />
         <button class="button button--primary dashboard__submit-upload" type="submit"> Upload file </button>
@@ -43,26 +43,19 @@
               <span></span>
             </div>
           </div>
-          <div class="dashboard__results-item">
-            <h4>Eula</h4>
 
-            <div class="dashboard__results-totals">
-              <p>10</p>
-              <p>10</p>
-              <p>About 21,600,000 results (0.42 seconds)</p>
-              <a class="button button--primary" href="/dashboard/home">Show HTML</a>
-            </div>
-          </div>
-          <div class="dashboard__results-item">
-            <h4>Ahri</h4>
+          {{#each scrapedDataTotals}}
+            <div class="dashboard__results-item">
+              <h4>{{this.keyword}}</h4>
 
-            <div class="dashboard__results-totals">
-              <p>10</p>
-              <p>10</p>
-              <p>About 21,600,000 results (0.42 seconds)</p>
-              <a class="button button--primary" href="/dashboard/home">Show HTML</a>
+              <div class="dashboard__results-totals">
+                <p>{{this.total_ad_count}}</p>
+                <p>{{this.total_link_count}}</p>
+                <p>{{this.total_search_results}}</p>
+                <a class="button button--primary" href="/dashboard/home">Show HTML</a>
+              </div>
             </div>
-          </div>
+          {{/each}}
         </div>
       {{/if}}
     </div>

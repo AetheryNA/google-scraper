@@ -24,7 +24,7 @@ export class DashboardController {
   }
 
   @UseGuards(AuthenticatedGuard)
-  @Post('/upload-file')
+  @Post('/upload-file-and-scrape-data')
   @Render('dashboard')
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(
@@ -33,25 +33,44 @@ export class DashboardController {
     @Req() req,
   ) {
     const keywordsFromCSV = await this.dashboardService.parseData(file);
+    const totalFoundResults = [];
 
     if (keywordsFromCSV) {
-      await this.dashboardService.saveParsedDataToDatabase(
-        keywordsFromCSV,
-        req.user.id,
-      );
+      const saveDataAndReturnKeywordID =
+        await this.dashboardService.saveParsedDataToDatabase(
+          keywordsFromCSV,
+          req.user.id,
+        );
+
+      for (const keyword of keywordsFromCSV) {
+        const htmlData = await this.dashboardService.searchGoogleAndReturnHTML(
+          keyword[0],
+        );
+
+        if (htmlData) {
+          const getTotalScrapedResults =
+            await this.dashboardService.getTotalResults(htmlData);
+
+          totalFoundResults.push({
+            keyword: keyword[0],
+            ...getTotalScrapedResults,
+          });
+
+          saveDataAndReturnKeywordID.forEach(async (keywordID: number) => {
+            await this.dashboardService.saveDataToKeywordsonDB(
+              keywordID,
+              totalFoundResults,
+              htmlData,
+            );
+          });
+        }
+      }
 
       return {
         keywords: keywordsFromCSV,
+        scrapedDataTotals: totalFoundResults,
         message: 'File uploaded successfully',
       };
     } else throw new Error('File cannot be uploaded');
-  }
-
-  @Get('/get-axios-data')
-  async scrapedData() {
-    const foundHTML =
-      await this.dashboardService.searchGooglePageAndReturnHTML();
-
-    return await this.dashboardService.getTotalResults(foundHTML);
   }
 }

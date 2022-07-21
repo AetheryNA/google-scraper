@@ -3,7 +3,7 @@ import { parse } from 'papaparse';
 import { UserService } from './user.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Keywords } from 'src/entities/keywords.entity';
-import { Repository } from 'typeorm';
+import { Repository, createQueryBuilder } from 'typeorm';
 import { HttpService } from '@nestjs/axios';
 import { load } from 'cheerio';
 
@@ -35,8 +35,9 @@ export class DashboardService {
     userId: number,
   ): Promise<any> {
     const foundUser = await this.userService.findUserById(userId);
+    const keywordIds = [];
 
-    parsedData.map(async (keyword: string) => {
+    for (const keyword of parsedData) {
       const saveKeyword = this.keywordsRepository.create({
         user: foundUser,
         keyword: keyword[0],
@@ -44,12 +45,15 @@ export class DashboardService {
         updatedAt: new Date(),
       });
 
-      this.keywordsRepository.save(saveKeyword);
-    });
+      const resultToSave = await this.keywordsRepository.save(saveKeyword);
+      keywordIds.push(resultToSave.id);
+    }
+
+    return keywordIds;
   }
 
-  async searchGooglePageAndReturnHTML(): Promise<any> {
-    const url = 'https://www.google.com/search?q=eula';
+  async searchGoogleAndReturnHTML(urlKeyword: string): Promise<any> {
+    const url = `https://www.google.com/search?q=${urlKeyword}`;
 
     const getResponseData = await this.httpService.axiosRef(url, {
       headers: {
@@ -63,6 +67,7 @@ export class DashboardService {
 
   async getTotalResults(htmlData: string) {
     const scrapeDataSource = load(htmlData);
+
     let totalAdsCount = 0;
     let totalLinksCount = 0;
     let totalSearchResults = '';
@@ -86,5 +91,20 @@ export class DashboardService {
       total_link_count: totalLinksCount,
       total_search_results: totalSearchResults,
     };
+  }
+
+  async saveDataToKeywordsonDB(
+    keywordID: number,
+    dataToSave: any,
+    htmlData: string,
+  ) {
+    this.keywordsRepository.update(keywordID, {
+      total_ads: dataToSave[0].total_ad_count,
+      total_links: dataToSave[0].total_link_count,
+      total_search_results: dataToSave[0].total_search_results,
+      html_of_page: htmlData,
+    });
+
+    return 'User updated with scraped details';
   }
 }
