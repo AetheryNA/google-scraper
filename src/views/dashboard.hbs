@@ -10,7 +10,7 @@
     <div class="dashboard__head">
       <ul class="dashboard__navigation">
         <li><a href="/dashboard/home">Dashboard</a></li>
-        <li><a href="/searches">My Searches</a></li>
+        <li><a href="/results">My Searches</a></li>
       </ul>
       <form class="dashboard__file-form" action="/dashboard/upload-file-and-scrape-data" method="post" accept=".csv" enctype="multipart/form-data">
         <span> Upload a CSV file </span>
@@ -30,33 +30,6 @@
             <li class="dashboard__item dashboard__item--{{@index}}">{{this}}</li>
           {{/each}}
         </ul>
-
-        <h3> Results </h3>
-        <div class="dashboard__results">
-          <div class="dashboard__results-item">
-            <h4>Keyword</h4>
-
-            <div class="dashboard__results-totals">
-              <p>Total Adwords</p>
-              <p>Total Links</p>
-              <p>Total Search Results</p>
-              <span></span>
-            </div>
-          </div>
-
-          {{#each scrapedDataTotals}}
-            <div class="dashboard__results-item">
-              <h4>{{this.keyword}}</h4>
-
-              <div class="dashboard__results-totals">
-                <p>{{this.total_ad_count}}</p>
-                <p>{{this.total_link_count}}</p>
-                <p>{{this.total_search_results}}</p>
-                <a class="button button--primary" href="/dashboard/home">Show HTML</a>
-              </div>
-            </div>
-          {{/each}}
-        </div>
       {{/if}}
     </div>
   </div>
