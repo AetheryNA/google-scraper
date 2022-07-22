@@ -11,4 +11,12 @@
       opacity: .8;
     }
   }
+
+  &--secondary {
+    @apply text-sm font-bold border-indigo border rounded-md transition;
+
+    &:hover {
+      @apply text-white-default bg-indigo;
+    }
+  }
 }

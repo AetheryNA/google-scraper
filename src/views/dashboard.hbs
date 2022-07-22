@@ -10,9 +10,9 @@
     <div class="dashboard__head">
       <ul class="dashboard__navigation">
         <li><a href="/dashboard/home">Dashboard</a></li>
-        <li><a href="/searches">My Searches</a></li>
+        <li><a href="/results">My Searches</a></li>
       </ul>
-      <form class="dashboard__file-form" action="/dashboard/upload-file" method="post" accept=".csv" enctype="multipart/form-data">
+      <form class="dashboard__file-form" action="/dashboard/upload-file-and-scrape-data" method="post" accept=".csv" enctype="multipart/form-data">
         <span> Upload a CSV file </span>
         <input type="file" name="file" class="dashboard__upload-file" />
         <button class="button button--primary dashboard__submit-upload" type="submit"> Upload file </button>
@@ -30,40 +30,6 @@
             <li class="dashboard__item dashboard__item--{{@index}}">{{this}}</li>
           {{/each}}
         </ul>
-
-        <h3> Results </h3>
-        <div class="dashboard__results">
-          <div class="dashboard__results-item">
-            <h4>Keyword</h4>
-
-            <div class="dashboard__results-totals">
-              <p>Total Adwords</p>
-              <p>Total Links</p>
-              <p>Total Search Results</p>
-              <span></span>
-            </div>
-          </div>
-          <div class="dashboard__results-item">
-            <h4>Eula</h4>
-
-            <div class="dashboard__results-totals">
-              <p>10</p>
-              <p>10</p>
-              <p>About 21,600,000 results (0.42 seconds)</p>
-              <a class="button button--primary" href="/dashboard/home">Show HTML</a>
-            </div>
-          </div>
-          <div class="dashboard__results-item">
-            <h4>Ahri</h4>
-
-            <div class="dashboard__results-totals">
-              <p>10</p>
-              <p>10</p>
-              <p>About 21,600,000 results (0.42 seconds)</p>
-              <a class="button button--primary" href="/dashboard/home">Show HTML</a>
-            </div>
-          </div>
-        </div>
       {{/if}}
     </div>
   </div>
