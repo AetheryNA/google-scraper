@@ -1061,3 +1061,6 @@ a:hover {
     line-height: 2.5rem;
   }
 }
+.view-html__wrapper {
+  position: relative;
+}

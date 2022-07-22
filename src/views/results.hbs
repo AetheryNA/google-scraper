@@ -54,7 +54,11 @@
           <p>{{queriedValue.total_ads}}</p>
           <p>{{queriedValue.total_links}}</p>
           <p>{{queriedValue.total_search_results}}</p>
-          <a class="button button--primary" href="/dashboard/home">Show HTML</a>
+          <form method="GET" action="/results/view-html">
+            <input type="hidden" name="keywordName" value={{queriedValue.keyword}} />
+            <input type="hidden" name="keywordID" value={{queriedValue.id}} />
+            <button type="submit" class="button button--primary">Show HTML</button>
+          </form>
         </div>
       </div>
     {{/if}}

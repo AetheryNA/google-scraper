@@ -24,4 +24,8 @@
       }
     }
   }
+
+  &__wrapper {
+    @apply relative;
+  }
 }
