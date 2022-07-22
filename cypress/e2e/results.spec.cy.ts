@@ -25,4 +25,22 @@ describe('Results Controller', () => {
       expect(location.pathname).to.eq('/results/search-keywords');
     });
   });
+
+  it('should find show html button on the page', () => {
+    uploadFile();
+
+    cy.visit('/results');
+    cy.get('.button').first().contains('Show HTML');
+  });
+
+  it('should find show html button on the page', () => {
+    uploadFile();
+
+    cy.visit('/results');
+    cy.get('.button').first().click();
+
+    cy.location().should((location) => {
+      expect(location.pathname).to.eq('/results/view-html');
+    });
+  });
 });
