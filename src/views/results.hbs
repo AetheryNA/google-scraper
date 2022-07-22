@@ -1,0 +1,52 @@
+<section class="results">
+  <div class="results__head">
+    <a href="/dashboard/home">&lsaquo; Go back</a>
+    <h1> My Searches </h1>
+
+    <form action="/results/search-keywords" class="results__form" method="POST">
+      <span class="results__line"></span>
+      <div class="results__search-bar">
+        <label for="search-keyword">Search by keyword:</label>
+        <input type="text" name="keywordToSearch" id="search-keyword" />
+      </div>
+    </form>
+  </div>
+  <div class="results__table">
+    <div class="results__table-item">
+      <h4>Keyword</h4>
+
+      <div class="results__table-totals">
+        <p>Total Adwords</p>
+        <p>Total Links</p>
+        <p>Total Search Results</p>
+        <span></span>
+      </div>
+    </div>
+
+    {{!-- {{#each scrapedDataTotals}}
+      <div class="results__table-item">
+        <h4>{{this.keyword}}</h4>
+
+        <div class="results__table-totals">
+          <p>{{this.total_ad_count}}</p>
+          <p>{{this.total_link_count}}</p>
+          <p>{{this.total_search_results}}</p>
+          <a class="button button--primary" href="/dashboard/home">Show HTML</a>
+        </div>
+      </div>
+    {{/each}} --}}
+      <div class="results__table-item">
+        <div class="results__table-keyword">
+          <h4>Eula</h4>
+          <span class="results__pending-item">pending</span>
+        </div>
+
+        <div class="results__table-totals">
+          <p>10</p>
+          <p>20</p>
+          <p>About 90,500,000 results (0.43 seconds) </p>
+          <a class="button button--primary" href="/dashboard/home">Show HTML</a>
+        </div>
+      </div>
+  </div>
+</section>
