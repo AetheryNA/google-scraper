@@ -7,6 +7,7 @@ import { UserModule } from 'src/modules/user.module';
 import { AuthModule } from './modules/auth.module';
 import { DashboardModule } from './modules/dashboard.module';
 import { AppController } from 'src/controllers/app.controller';
+import { ResultsModule } from './modules/results.module';
 
 const imports = [
   ConfigModule.forRoot({
@@ -17,6 +18,7 @@ const imports = [
   AuthModule,
   UserModule,
   DashboardModule,
+  ResultsModule,
 ];
 
 @Module({
