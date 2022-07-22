@@ -18,6 +18,7 @@ module.exports = {
       purple: '#a855f7',
       pink: '#ec4899',
       indigo: '#6366f1',
+      red: '#d63031',
     },
   },
   plugins: [],

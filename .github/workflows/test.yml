@@ -11,6 +11,9 @@ env:
   NODE_VERSION: "16"
   NODE_ENV: test
   POSTGRES_PASSWORD: 1234
+  REDIS_VERSION: "7"
+  REDIS_HOST: localhost
+  REDIS_PORT: 6379
 
 jobs:
   install_dependancies:
@@ -115,6 +118,13 @@ jobs:
           key: ${{ runner.os }}-google-scraper-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-google-scraper-node-
+      
+      - name: Start Redis
+        uses: supercharge/redis-github-action@1.4.0
+        with:
+          redis-version: ${{ env.REDIS_VERSION }}
+          redis-host: ${{ env.REDIS_HOST }}
+          redis-port: ${{ env.REDIS_PORT }}
 
       - name: Install dependencies
         run: npm install
@@ -166,6 +176,13 @@ jobs:
           key: ${{ runner.os }}-google-scraper-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-google-scraper-node-
+
+      - name: Start Redis
+        uses: supercharge/redis-github-action@1.4.0
+        with:
+          redis-version: ${{ env.REDIS_VERSION }}
+          redis-host: ${{ env.REDIS_HOST }}
+          redis-port: ${{ env.REDIS_PORT }}
 
       - name: Initialize Database
         run: npm run db:create
