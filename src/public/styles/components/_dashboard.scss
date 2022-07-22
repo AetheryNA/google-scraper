@@ -1,0 +1,118 @@
+.dashboard {
+  @apply pt-5;
+
+  &__container {
+    @apply py-2.5;
+
+    h1 {
+      @apply text-xl;
+    }
+  }
+
+  &__top {
+    margin-top: 65px;
+
+    @screen md {
+      margin-top: 160px;
+    }
+
+    h1 {
+      @apply font-light uppercase text-4xl;
+
+      @screen md {
+        font-size: 55px;
+      }
+    }
+  }
+
+  &__top-para {
+    @apply mt-9 text-xl text-blue-default;
+
+    @screen md {
+      @apply text-4xl;
+    }
+  }
+
+  &__top-under-para {
+    @apply mt-5 text-xl;
+  }
+
+  &__line {
+    @apply bg-gradient-to-r from-indigo via-purple to-pink w-full flex mt-14;
+
+    height: 10px;
+    max-width: 20%;
+  }
+
+  &__head {
+    @apply mt-20 flex flex-col;
+  }
+
+  &__navigation {
+    @apply flex flex-row;
+
+    > li {
+      @apply text-2xl font-thin mb-10 mr-7;
+
+      @screen md {
+        @apply text-4xl mr-14;
+
+        margin-bottom: 50px;
+      }
+
+      &:last-child {
+        @apply mr-0;
+      }
+
+      a {
+        @apply text-black-default;
+
+        &:hover {
+          @apply text-indigo;
+        }
+      }
+    }
+  }
+
+  &__file-form {
+    @apply flex flex-col items-start p-5 bg-white-default rounded shadow;
+
+    max-width: 300px;
+
+    span {
+      @apply mb-2.5 italic;
+    }
+  }
+
+  &__upload-file {
+    @apply mb-5;
+  }
+
+  &__submit-upload {
+    @apply rounded-md;
+  }
+
+  &__success-msg {
+    @apply mt-2.5 text-indigo;
+  }
+
+  &__keywords {
+    @apply flex flex-row flex-wrap mb-5;
+  }
+
+  &__table {
+    margin-top: 50px;
+
+    h3 {
+      @apply mb-5 font-light text-4xl;
+    }
+  }
+  
+  &__item {
+    @apply mr-2 p-1.5 rounded-md text-white-default bg-indigo;
+
+    &:last-child {
+      @apply mr-0;
+    }
+  }
+}

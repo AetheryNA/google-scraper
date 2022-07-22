@@ -1,0 +1,66 @@
+<section class="results">
+  <div class="results__head">
+    <a href="/dashboard/home">&lsaquo; Go back</a>
+    <h1> My Searches </h1>
+
+    <form action="/results/search-keywords" class="results__form" method="GET">
+      <span class="results__line"></span>
+      <div class="results__search-bar">
+        <label for="search-keyword">Search by keyword:</label>
+        <input type="text" name="keywordToSearch" id="search-keyword" />
+      </div>
+    </form>
+  </div>
+  <div class="results__table">
+    <div class="results__table-item">
+      <h4>Keyword</h4>
+
+      <div class="results__table-totals">
+        <p>Total Adwords</p>
+        <p>Total Links</p>
+        <p>Total Search Results</p>
+        <span></span>
+      </div>
+    </div>
+
+    {{#if allFoundResults}}
+      {{#each allFoundResults}}
+        <div class="results__table-item">
+          <div class="results__table-keyword">
+            <h4>{{this.keyword}}</h4>
+          </div>
+
+          <div class="results__table-totals">
+            <p>{{this.total_ads}}</p>
+            <p>{{this.total_links}}</p>
+            <p>{{this.total_search_results}}</p>
+            <form method="GET" action="/results/view-html">
+              <input type="hidden" name="keywordName" value={{this.keyword}} />
+              <input type="hidden" name="keywordID" value={{this.id}} />
+              <button type="submit" class="button button--primary">Show HTML</button>
+            </form>
+          </div>
+        </div>
+      {{/each}}
+    {{/if}}
+    
+    {{#if queriedValue}}
+      <div class="results__table-item">
+        <div class="results__table-keyword">
+          <h4>{{queriedValue.keyword}}</h4>
+        </div>
+
+        <div class="results__table-totals">
+          <p>{{queriedValue.total_ads}}</p>
+          <p>{{queriedValue.total_links}}</p>
+          <p>{{queriedValue.total_search_results}}</p>
+          <form method="GET" action="/results/view-html">
+            <input type="hidden" name="keywordName" value={{queriedValue.keyword}} />
+            <input type="hidden" name="keywordID" value={{queriedValue.id}} />
+            <button type="submit" class="button button--primary">Show HTML</button>
+          </form>
+        </div>
+      </div>
+    {{/if}}
+  </div>
+</section>

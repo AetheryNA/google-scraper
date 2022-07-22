@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+// Base
+@import "./base/base";
+@import "./base/buttons";
+
+// Components
+@import "./components/sign-in";
+@import "./components/dashboard";
+@import "./components/results";
+@import "./components/view-html";

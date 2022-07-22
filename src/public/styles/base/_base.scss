@@ -1,0 +1,11 @@
+body {
+  @apply bg-white-500;
+}
+
+a {
+  @apply text-blue-default transition;
+
+  &:hover {
+    @apply text-indigo;
+  }
+}

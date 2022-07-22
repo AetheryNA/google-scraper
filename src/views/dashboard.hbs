@@ -1,0 +1,36 @@
+<section class="dashboard">
+  <div class="dashboard__container">
+    <div class="dashboard__top">
+      <h1>G-Scraper</h1>
+      <p class="dashboard__top-para">Scrape data right off google!</p>
+      <p class="dashboard__top-under-para">Keep scrolling to continue</p>
+      <span class="dashboard__line"></span>
+    </div>
+
+    <div class="dashboard__head">
+      <ul class="dashboard__navigation">
+        <li><a href="/dashboard/home">Dashboard</a></li>
+        <li><a href="/results">My Searches</a></li>
+      </ul>
+      <form class="dashboard__file-form" action="/dashboard/upload-file-and-scrape-data" method="post" accept=".csv" enctype="multipart/form-data">
+        <span> Upload a CSV file </span>
+        <input type="file" name="file" class="dashboard__upload-file" />
+        <button class="button button--primary dashboard__submit-upload" type="submit"> Upload file </button>
+        {{#if message}}
+          <p class="dashboard__success-msg">{{ message }}</p>
+        {{/if}}
+      </form>
+    </div>
+
+    <div class="dashboard__table">
+      {{#if keywords}}
+        <h3> Keywords </h3>
+        <ul class="dashboard__keywords">
+          {{#each keywords}}
+            <li class="dashboard__item dashboard__item--{{@index}}">{{this}}</li>
+          {{/each}}
+        </ul>
+      {{/if}}
+    </div>
+  </div>
+</section>

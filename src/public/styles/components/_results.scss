@@ -1,0 +1,120 @@
+.results {
+  &__head {
+    @apply mb-10;
+
+    margin-top: 65px;
+
+    @screen md {
+      margin: 160px 0 50px;
+    }
+
+    a {
+      @apply text-black-default mb-2.5 flex;
+
+      &:hover {
+        @apply text-indigo;
+      }
+    }
+    
+    h1 {
+      @apply text-2xl font-thin;
+
+      @screen md {
+        @apply text-4xl;
+      }
+    }
+  }
+
+  &__form {
+    @apply flex flex-row justify-between;
+  }
+
+  &__search-bar {
+    @apply mt-auto flex;
+
+    label {
+      @apply text-sm font-light mr-1.5 mt-auto uppercase;
+    }
+
+    input {
+      @apply outline-none border-b border-black-default bg-white-500 mr-1.5 text-sm px-1;
+    }
+
+    button {
+      @apply w-auto py-0 px-3;
+    }
+  }
+
+  &__line {
+    @apply bg-gradient-to-r from-indigo via-purple to-pink w-full flex mt-14;
+
+    height: 10px;
+    max-width: 20%;
+  }
+
+  &__table {
+    @apply mt-8;
+
+    h3 {
+      @apply mb-2.5 text-2xl font-light;
+    }
+  }
+
+  &__table-keyword {
+    @apply flex flex-row justify-center items-center;
+  }
+
+  &__table-item {
+    @apply flex flex-row items-start justify-between border-b border-black-default border-opacity-10 mb-2.5 pb-2.5;
+
+    h4 {
+      @apply text-lg flex flex-row justify-center;
+    }
+
+    &:first-child {
+      @apply pb-0;
+
+      h4 {
+        @apply text-sm;
+      }
+
+      h4,
+      p {
+        @apply font-bold;
+      }
+    }
+
+    &:last-child {
+      @apply mb-0;
+    }
+  }
+
+  &__pending-item {
+    @apply bg-red p-1 text-white-default ml-1;
+
+    border-radius: 55px;
+    font-size: 10px;
+  }
+
+  &__table-totals {
+    @apply grid grid-cols-4 w-full;
+
+    max-width: 555px;
+
+    p {
+      @apply text-sm;
+    }
+
+    button {
+      @apply ml-auto flex justify-center items-center p-1.5 rounded-md;
+
+      font-size: 12px;
+      height: 35px;
+      max-width: 85%;
+
+      &:hover {
+        @apply text-white-default;
+      }
+    }
+  }
+}
