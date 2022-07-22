@@ -1,0 +1,27 @@
+.view-html {
+  &__head {
+    @apply mb-10;
+
+    margin-top: 65px;
+
+    @screen md {
+      margin: 160px 0 50px;
+    }
+
+    a {
+      @apply text-black-default mb-2.5 flex;
+
+      &:hover {
+        @apply text-indigo;
+      }
+    }
+    
+    h1 {
+      @apply text-2xl font-thin;
+
+      @screen md {
+        @apply text-4xl;
+      }
+    }
+  }
+}
