@@ -19,4 +19,32 @@ export class ResultsService {
         throw new Error('Cannot find keyword');
       });
   }
+
+  async findHTMLwithKeywordID(keywordID: number) {
+    return await this.keywordsRepository
+      .findOne({
+        where: { id: keywordID },
+        select: ['html_of_page'],
+      })
+      .catch(() => {
+        throw new Error('Keyword ID is not valid');
+      });
+  }
+
+  async findAllResults(userId: number) {
+    return await this.keywordsRepository
+      .find({
+        where: { user: userId },
+        select: [
+          'id',
+          'keyword',
+          'total_ads',
+          'total_links',
+          'total_search_results',
+        ],
+      })
+      .catch(() => {
+        throw new Error('Cannot find user');
+      });
+  }
 }
