@@ -545,6 +545,9 @@ video {
   margin-left: auto;
   margin-right: auto;
 }
+.hidden {
+  display: none;
+}
 body {
   --tw-bg-opacity: 1;
   background-color: rgb(245 246 250 / var(--tw-bg-opacity));
@@ -1012,7 +1015,7 @@ a:hover {
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
-.results__table-totals a {
+.results__table-totals button {
   margin-left: auto;
   display: flex;
   align-items: center;
@@ -1023,7 +1026,41 @@ a:hover {
   height: 35px;
   max-width: 85%;
 }
-.results__table-totals a:hover {
+.results__table-totals button:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.view-html__head {
+  margin-bottom: 2.5rem;
+  margin-top: 65px;
+}
+@media (min-width: 768px) {
+  .view-html__head {
+    margin: 160px 0 50px;
+  }
+}
+.view-html__head a {
+  margin-bottom: 0.625rem;
+  display: flex;
+  --tw-text-opacity: 1;
+  color: rgb(53 59 72 / var(--tw-text-opacity));
+}
+.view-html__head a:hover {
+  --tw-text-opacity: 1;
+  color: rgb(99 102 241 / var(--tw-text-opacity));
+}
+.view-html__head h1 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 100;
+}
+@media (min-width: 768px) {
+  .view-html__head h1 {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+.view-html__wrapper {
+  position: relative;
 }
