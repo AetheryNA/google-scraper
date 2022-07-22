@@ -12,7 +12,6 @@ env:
   NODE_ENV: test
   POSTGRES_PASSWORD: 1234
   REDIS_VERSION: "7"
-  REDIS_HOST: localhost
   REDIS_PORT: 6379
 
 jobs:
@@ -123,7 +122,6 @@ jobs:
         uses: supercharge/redis-github-action@1.4.0
         with:
           redis-version: ${{ env.REDIS_VERSION }}
-          redis-host: ${{ env.REDIS_HOST }}
           redis-port: ${{ env.REDIS_PORT }}
 
       - name: Install dependencies
@@ -181,7 +179,6 @@ jobs:
         uses: supercharge/redis-github-action@1.4.0
         with:
           redis-version: ${{ env.REDIS_VERSION }}
-          redis-host: ${{ env.REDIS_HOST }}
           redis-port: ${{ env.REDIS_PORT }}
 
       - name: Initialize Database
