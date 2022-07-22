@@ -60,14 +60,6 @@
     }
   }
 
-  &__item {
-    @apply mr-2 p-1.5 rounded-md text-white-default bg-indigo;
-
-    &:last-child {
-      @apply mr-0;
-    }
-  }
-
   &__table-keyword {
     @apply flex flex-row justify-center items-center;
   }

@@ -99,4 +99,20 @@
   &__keywords {
     @apply flex flex-row flex-wrap mb-5;
   }
+
+  &__table {
+    margin-top: 50px;
+
+    h3 {
+      @apply mb-5 font-light text-4xl;
+    }
+  }
+  
+  &__item {
+    @apply mr-2 p-1.5 rounded-md text-white-default bg-indigo;
+
+    &:last-child {
+      @apply mr-0;
+    }
+  }
 }
