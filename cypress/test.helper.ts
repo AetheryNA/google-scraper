@@ -15,3 +15,9 @@ export const loginUser = (user: any) => {
 
   cy.get('.auth-form__button').click();
 };
+
+export const uploadFile = () => {
+  cy.get('.dashboard__upload-file').selectFile('cypress/fixtures/fixture.csv');
+
+  cy.get('.dashboard__submit-upload').click();
+};

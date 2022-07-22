@@ -7,6 +7,7 @@ import { HttpExceptionFilter } from 'src/http-exception-filter';
 import { createMock, DeepMocked } from '@golevelup/ts-jest';
 import { ConfigService } from '@nestjs/config';
 import { hash, genSalt } from 'bcrypt';
+import { Keywords } from 'src/entities/keywords.entity';
 
 export async function createNestAppInstance(): Promise<INestApplication> {
   let app: INestApplication;
@@ -81,4 +82,27 @@ export async function createUser(nestApp, { username, password }: any) {
   );
 
   return user;
+}
+
+export async function createKeywordEntry(
+  nestApp,
+  { userId, randomKeyword }: any,
+) {
+  let keywordRespository: Repository<Keywords>;
+
+  // eslint-disable-next-line prefer-const
+  keywordRespository = nestApp.get('KeywordsRepository');
+
+  const saveKeyword = await keywordRespository.save(
+    keywordRespository.create({
+      user: userId,
+      keyword: randomKeyword,
+      total_ads: 1,
+      total_links: 1,
+      total_search_results: 'About 1 results',
+      html_of_page: '<h1>Hello there</h1>',
+    }),
+  );
+
+  return saveKeyword;
 }
