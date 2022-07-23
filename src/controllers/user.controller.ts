@@ -58,6 +58,8 @@ export class UserController {
           );
       });
 
+    // TODO: Proper validation for failed signups
+
     res.redirect('/');
     return `${username} has been created`;
   }
@@ -84,5 +86,7 @@ export class UserController {
     } else {
       throw new UnauthorizedException();
     }
+
+    // TODO: Proper validaton for failed login
   }
 }
