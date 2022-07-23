@@ -7,6 +7,7 @@ import {
   UseGuards,
   UseInterceptors,
   Req,
+  UnprocessableEntityException,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthenticatedGuard } from 'src/common/guards/authenticated.guard';
@@ -37,9 +38,11 @@ export class DashboardController {
     file: Express.Multer.File,
     @Req() req,
   ) {
-    const keywordsFromCSV = await this.dashboardService.parseData(file);
+    // TODO: Move the if condition logic into a service this shouldn't be at a controller level, Will be done in #50
 
-    if (keywordsFromCSV) {
+    if (file.mimetype == 'text/csv' && file.size > 0) {
+      const keywordsFromCSV = await this.dashboardService.parseData(file);
+
       const saveDataAndReturnKeywordObj =
         await this.dashboardService.saveParsedDataToDatabase(
           keywordsFromCSV,
@@ -57,6 +60,6 @@ export class DashboardController {
         keywords: keywordsFromCSV,
         message: 'File uploaded successfully',
       };
-    } else throw new Error('File cannot be uploaded');
+    } else throw new UnprocessableEntityException('Please upload a valid file');
   }
 }

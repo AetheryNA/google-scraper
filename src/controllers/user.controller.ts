@@ -2,8 +2,6 @@ import {
   Controller,
   Post,
   Body,
-  HttpException,
-  HttpStatus,
   UnauthorizedException,
   Request,
   Res,
@@ -11,6 +9,7 @@ import {
   Get,
   Render,
   UseGuards,
+  ConflictException,
 } from '@nestjs/common';
 import { Response } from 'express';
 import { UserService } from 'src/services/user.service';
@@ -52,9 +51,8 @@ export class UserController {
       })
       .catch((error) => {
         if (error.code == 23505)
-          throw new HttpException(
+          throw new ConflictException(
             'Username is already in use, please try another username',
-            HttpStatus.BAD_REQUEST,
           );
       });
 
