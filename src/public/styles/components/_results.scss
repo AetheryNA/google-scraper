@@ -89,11 +89,14 @@
     }
   }
 
-  &__pending-item {
-    @apply bg-red p-1 text-white-default ml-1;
+  &__warning {
+    @apply mt-2.5 flex flex-row items-center italic;
 
-    border-radius: 55px;
-    font-size: 10px;
+    span {
+      @apply flex items-center border border-red text-red p-1 uppercase mr-2.5 text-xs;
+
+      border-radius: 55px;
+    }
   }
 
   &__table-totals {

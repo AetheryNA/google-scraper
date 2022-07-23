@@ -70,6 +70,10 @@
         &:hover {
           @apply text-indigo;
         }
+
+        &.active {
+          @apply text-indigo;
+        }
       }
     }
   }

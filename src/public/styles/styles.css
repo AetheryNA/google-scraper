@@ -810,6 +810,10 @@ a:hover {
   --tw-text-opacity: 1;
   color: rgb(99 102 241 / var(--tw-text-opacity));
 }
+.dashboard__navigation > li a.active {
+  --tw-text-opacity: 1;
+  color: rgb(99 102 241 / var(--tw-text-opacity));
+}
 .dashboard__file-form {
   display: flex;
   flex-direction: column;
@@ -995,15 +999,27 @@ a:hover {
 .results__table-item:last-child {
   margin-bottom: 0px;
 }
-.results__pending-item {
-  margin-left: 0.25rem;
-  --tw-bg-opacity: 1;
-  background-color: rgb(214 48 49 / var(--tw-bg-opacity));
+.results__warning {
+  margin-top: 0.625rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-style: italic;
+}
+.results__warning span {
+  margin-right: 0.625rem;
+  display: flex;
+  align-items: center;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(231 76 60 / var(--tw-border-opacity));
   padding: 0.25rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  text-transform: uppercase;
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+  color: rgb(231 76 60 / var(--tw-text-opacity));
   border-radius: 55px;
-  font-size: 10px;
 }
 .results__table-totals {
   display: grid;
