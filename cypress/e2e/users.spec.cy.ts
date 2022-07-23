@@ -37,5 +37,13 @@ describe('Users page', () => {
     cy.location().should((location) => {
       expect(location.pathname).to.eq('/dashboard/home');
     });
+
+    it('should not let the user access dashboard without logging in', () => {
+      cy.visit('/dashboard/home');
+
+      cy.location().should((location) => {
+        expect(location.pathname).to.eq('/');
+      });
+    });
   });
 });

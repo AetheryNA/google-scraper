@@ -12,7 +12,9 @@ env:
   NODE_ENV: test
   POSTGRES_PASSWORD: 1234
   REDIS_VERSION: "7"
+  REDIS_HOST: "127.0.0.1"
   REDIS_PORT: 6379
+  REDIS_PASSWORD: ''
 
 jobs:
   install_dependancies:
@@ -99,6 +101,16 @@ jobs:
         env:
           POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
 
+      redis:
+        image: redis:7.0.4
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 15s
+          --health-retries 5
+        ports:
+          - "6379:6379"
+
     steps: 
       - name: Checkout the repository
         uses: actions/checkout@v2
@@ -117,12 +129,6 @@ jobs:
           key: ${{ runner.os }}-google-scraper-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-google-scraper-node-
-      
-      - name: Start Redis
-        uses: supercharge/redis-github-action@1.4.0
-        with:
-          redis-version: ${{ env.REDIS_VERSION }}
-          redis-port: ${{ env.REDIS_PORT }}
 
       - name: Install dependencies
         run: npm install
@@ -155,6 +161,16 @@ jobs:
         ports: ['5432:5432']
         env:
           POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+      
+      redis:
+        image: redis:7.0.4
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 15s
+          --health-retries 5
+        ports:
+          - "6379:6379"
 
     steps: 
       - name: Checkout the repository
@@ -174,12 +190,6 @@ jobs:
           key: ${{ runner.os }}-google-scraper-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-google-scraper-node-
-
-      - name: Start Redis
-        uses: supercharge/redis-github-action@1.4.0
-        with:
-          redis-version: ${{ env.REDIS_VERSION }}
-          redis-port: ${{ env.REDIS_PORT }}
 
       - name: Initialize Database
         run: npm run db:create

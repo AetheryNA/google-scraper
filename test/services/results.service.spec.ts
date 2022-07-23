@@ -48,7 +48,7 @@ describe('Results Service', () => {
 
     expect(retrievedQuery).toBeTruthy();
     expect(typeof retrievedQuery).toBe('object');
-    expect(retrievedQuery.keyword).toEqual(randomWord);
+    expect(retrievedQuery[0].keyword).toEqual(randomWord);
   });
 
   it('should find keywords using keyword ID', async () => {
