@@ -24,7 +24,7 @@ describe('Users page', () => {
     });
   });
 
-  it('should be able to select input fields and click sign in button', () => {
+  it('should be able to visit the dashboard page', () => {
     const newUser = createRandomUser();
 
     registerNewUser(newUser);
