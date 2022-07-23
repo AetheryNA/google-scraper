@@ -46,22 +46,24 @@
     {{/if}}
     
     {{#if queriedValue}}
-      <div class="results__table-item">
-        <div class="results__table-keyword">
-          <h4>{{queriedValue.keyword}}</h4>
-        </div>
+      {{#each queriedValue}}
+        <div class="results__table-item">
+          <div class="results__table-keyword">
+            <h4>{{this.keyword}}</h4>
+          </div>
 
-        <div class="results__table-totals">
-          <p>{{queriedValue.total_ads}}</p>
-          <p>{{queriedValue.total_links}}</p>
-          <p>{{queriedValue.total_search_results}}</p>
-          <form method="GET" action="/results/view-html">
-            <input type="hidden" name="keywordName" value={{queriedValue.keyword}} />
-            <input type="hidden" name="keywordID" value={{queriedValue.id}} />
-            <button type="submit" class="button button--primary">Show HTML</button>
-          </form>
+          <div class="results__table-totals">
+            <p>{{this.total_ads}}</p>
+            <p>{{this.total_links}}</p>
+            <p>{{this.total_search_results}}</p>
+            <form method="GET" action="/results/view-html">
+              <input type="hidden" name="keywordName" value={{this.keyword}} />
+              <input type="hidden" name="keywordID" value={{this.id}} />
+              <button type="submit" class="button button--primary">Show HTML</button>
+            </form>
+          </div>
         </div>
-      </div>
+      {{/each}}
     {{/if}}
   </div>
 </section>
