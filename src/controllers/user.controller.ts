@@ -56,7 +56,7 @@ export class UserController {
           );
       });
 
-    // TODO: Proper validation for failed signups
+    // TODO: Validation needs to be worked on #33
 
     res.redirect('/');
     return `${username} has been created`;
@@ -85,6 +85,6 @@ export class UserController {
       throw new UnauthorizedException();
     }
 
-    // TODO: Proper validaton for failed login
+    // TODO: Validation needs to be worked on #33
   }
 }
