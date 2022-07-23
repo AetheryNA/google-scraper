@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Keywords } from 'src/entities/keywords.entity';
-import { Repository } from 'typeorm';
+import { createQueryBuilder, ILike, Like, Repository } from 'typeorm';
 
 @Injectable()
 export class ResultsService {
@@ -12,8 +12,8 @@ export class ResultsService {
 
   async findKeywordsByUserId(userId: number, keyword: any) {
     return await this.keywordsRepository
-      .findOne({
-        where: { user: userId, keyword: keyword },
+      .find({
+        where: { user: userId, keyword: ILike(`%${keyword}%`) },
       })
       .catch(() => {
         throw new Error('Cannot find keyword');
