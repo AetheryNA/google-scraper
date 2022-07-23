@@ -9,3 +9,11 @@ a {
     @apply text-indigo;
   }
 }
+
+.container {
+  @apply px-4;
+
+  @screen sm {
+    @apply px-0;
+  }
+}

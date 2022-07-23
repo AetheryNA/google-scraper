@@ -26,7 +26,11 @@
   }
 
   &__form {
-    @apply flex flex-row justify-between;
+    @apply flex flex-col;
+
+    @screen md {
+      @apply flex-row justify-between;
+    }
   }
 
   &__search-bar {
@@ -46,14 +50,26 @@
   }
 
   &__line {
-    @apply bg-gradient-to-r from-indigo via-purple to-pink w-full flex mt-14;
+    @apply bg-gradient-to-r from-indigo via-purple to-pink w-full flex mt-14 mb-7;
 
     height: 10px;
-    max-width: 20%;
+    max-width: 40%;
+
+    @screen md {
+      @apply mb-0;
+
+      max-width: 20%;
+    }
   }
 
   &__table {
     @apply mt-8;
+
+    width: 768px;
+
+    @screen md {
+      width: 100%;
+    }
 
     h3 {
       @apply mb-2.5 text-2xl font-light;
