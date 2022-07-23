@@ -8,6 +8,8 @@ import { createMock, DeepMocked } from '@golevelup/ts-jest';
 import { ConfigService } from '@nestjs/config';
 import { hash, genSalt } from 'bcrypt';
 import { Keywords } from 'src/entities/keywords.entity';
+import { ViewAuthFilter } from 'src/unauth-exception-filter';
+import { ViewForbiddenFilter } from 'src/forbidden-exception-filter';
 
 export async function createNestAppInstance(): Promise<INestApplication> {
   let app: INestApplication;
@@ -19,7 +21,11 @@ export async function createNestAppInstance(): Promise<INestApplication> {
 
   // eslint-disable-next-line prefer-const
   app = moduleRef.createNestApplication();
-  app.useGlobalFilters(new HttpExceptionFilter());
+  app.useGlobalFilters(
+    new HttpExceptionFilter(),
+    new ViewAuthFilter(),
+    new ViewForbiddenFilter(),
+  );
   app.useGlobalPipes(new ValidationPipe());
 
   await app.init();
@@ -45,7 +51,11 @@ export async function createNestAppInstanceWithENVMock(): Promise<{
 
   // eslint-disable-next-line prefer-const
   app = moduleRef.createNestApplication();
-  app.useGlobalFilters(new HttpExceptionFilter());
+  app.useGlobalFilters(
+    new HttpExceptionFilter(),
+    new ViewAuthFilter(),
+    new ViewForbiddenFilter(),
+  );
   app.useGlobalPipes(new ValidationPipe());
 
   await app.init();

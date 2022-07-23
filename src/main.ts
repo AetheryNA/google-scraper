@@ -7,6 +7,8 @@ import { HttpExceptionFilter } from 'src/http-exception-filter';
 import { ConfigService } from '@nestjs/config';
 import * as session from 'express-session';
 import * as passport from 'passport';
+import { ViewAuthFilter } from './unauth-exception-filter';
+import { ViewForbiddenFilter } from './forbidden-exception-filter';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -27,7 +29,11 @@ async function bootstrap() {
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.setViewEngine('hbs');
   app.set('view options', { layout: 'layouts/main' });
-  app.useGlobalFilters(new HttpExceptionFilter());
+  app.useGlobalFilters(
+    new HttpExceptionFilter(),
+    new ViewAuthFilter(),
+    new ViewForbiddenFilter(),
+  );
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors();
   app.use(passport.initialize());
