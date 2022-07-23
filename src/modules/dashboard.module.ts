@@ -22,6 +22,9 @@ import { ScrapeProcessor } from 'src/processors/scrape.processor';
             host: config.get<string>('REDIS_HOST'),
             port: config.get<number>('REDIS_PORT'),
             password: config.get<string>('REDIS_PASSWORD'),
+            tls: {
+              rejectUnauthorized: false,
+            },
           },
           limiter: {
             max: 3,
