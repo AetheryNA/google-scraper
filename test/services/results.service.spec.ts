@@ -65,7 +65,7 @@ describe('Results Service', () => {
       randomKeyword: randomWord,
     });
 
-    const retrievedQuery = await service.findHTMLwithKeywordID(keyword.id);
+    const retrievedQuery = await service.findKeywordByID(keyword.id);
 
     expect(retrievedQuery).toBeTruthy();
     expect(typeof retrievedQuery).toBe('object');
