@@ -11,15 +11,17 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthenticatedGuard } from 'src/common/guards/authenticated.guard';
-import { DashboardService } from 'src/services/dashboard.service';
 import { InjectQueue } from '@nestjs/bull';
 import { Queue } from 'bull';
+import { ParseCsvService } from 'src/services/keywords/parseCsv.service';
+import { SaveKeywordsToDatabaseService } from 'src/services/keywords/saveKeywordstoDatabase.service';
 
 @Controller('dashboard')
 export class DashboardController {
   constructor(
     @InjectQueue('scrape-queue') private scrapeQueue: Queue,
-    private dashboardService: DashboardService,
+    private parseCSVService: ParseCsvService,
+    private saveKeywordsToDatabaseService: SaveKeywordsToDatabaseService,
   ) {}
 
   @UseGuards(AuthenticatedGuard)
@@ -41,10 +43,10 @@ export class DashboardController {
     // TODO: Move the if condition logic into a service this shouldn't be at a controller level, Will be done in #50
 
     if (file.mimetype == 'text/csv' && file.size > 0) {
-      const keywordsFromCSV = await this.dashboardService.parseData(file);
+      const keywordsFromCSV = await this.parseCSVService.parseData(file);
 
       const saveDataAndReturnKeywordObj =
-        await this.dashboardService.saveParsedDataToDatabase(
+        await this.saveKeywordsToDatabaseService.saveParsedData(
           keywordsFromCSV,
           req.user.id,
         );

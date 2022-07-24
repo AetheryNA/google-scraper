@@ -8,6 +8,8 @@ import { AuthModule } from './modules/auth.module';
 import { DashboardModule } from './modules/dashboard.module';
 import { AppController } from 'src/controllers/app.controller';
 import { ResultsModule } from './modules/results.module';
+import { KeywordsModule } from './modules/keywords.module';
+import { ScraperModule } from './modules/scraper.module';
 
 const imports = [
   ConfigModule.forRoot({
