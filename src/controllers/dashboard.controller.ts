@@ -30,7 +30,7 @@ export class DashboardController {
   }
 
   @UseGuards(AuthenticatedGuard)
-  @Post('/upload-file-and-scrape-data')
+  @Post('/upload')
   @Render('dashboard')
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(

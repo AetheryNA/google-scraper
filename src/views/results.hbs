@@ -8,7 +8,7 @@
       <span class="results__line"></span>
       <div class="results__search-bar">
         <label for="search-keyword">Search by keyword:</label>
-        <input type="text" name="keywordToSearch" id="search-keyword" />
+        <input type="text" name="keyword" id="search-keyword" />
       </div>
     </form>
   </div>
@@ -35,9 +35,7 @@
             <p>{{this.total_ads}}</p>
             <p>{{this.total_links}}</p>
             <p>{{this.total_search_results}}</p>
-            <form method="GET" action="/results/view-html">
-              <input type="hidden" name="keywordName" value={{this.keyword}} />
-              <input type="hidden" name="keywordID" value={{this.id}} />
+            <form method="GET" action="/results/{{this.id}}/view-html">
               <button type="submit" class="button button--primary">Show HTML</button>
             </form>
           </div>
@@ -56,9 +54,7 @@
             <p>{{this.total_ads}}</p>
             <p>{{this.total_links}}</p>
             <p>{{this.total_search_results}}</p>
-            <form method="GET" action="/results/view-html">
-              <input type="hidden" name="keywordName" value={{this.keyword}} />
-              <input type="hidden" name="keywordID" value={{this.id}} />
+            <form method="GET" action="/results/{{this.id}}/view-html">
               <button type="submit" class="button button--primary">Show HTML</button>
             </form>
           </div>

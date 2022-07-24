@@ -20,11 +20,10 @@ export class ResultsService {
       });
   }
 
-  async findHTMLwithKeywordID(keywordID: number) {
+  async findKeywordByID(keywordID: number) {
     return await this.keywordsRepository
       .findOne({
         where: { id: keywordID },
-        select: ['html_of_page'],
       })
       .catch(() => {
         throw new Error('Keyword ID is not valid');

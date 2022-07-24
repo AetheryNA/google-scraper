@@ -5,7 +5,7 @@ import {
   Query,
   Req,
   UseGuards,
-  Res,
+  Param,
 } from '@nestjs/common';
 import { ResultsService } from 'src/services/results.service';
 import { AuthenticatedGuard } from 'src/common/guards/authenticated.guard';
@@ -28,15 +28,18 @@ export class ResultsController {
   }
 
   @UseGuards(AuthenticatedGuard)
-  @Get('/view-html')
+  @Get('/:keyword_id/view-html')
   @Render('view-html')
-  async viewKeywordHtml(@Query() queryParam: any) {
-    const getHtmlfromKeywordID =
-      await this.resultsService.findHTMLwithKeywordID(queryParam.keywordID);
+  async viewKeywordHtml(@Param() param: any) {
+    console.log(param);
+
+    const getKeywordRecord = await this.resultsService.findKeywordByID(
+      param.keyword_id,
+    );
 
     return {
-      keyword: queryParam.keywordName,
-      rawHtml: getHtmlfromKeywordID,
+      keyword: getKeywordRecord.keyword,
+      rawHtml: getKeywordRecord.html_of_page,
     };
   }
 
@@ -46,7 +49,7 @@ export class ResultsController {
   async searchKeyword(@Query() queryParam: any, @Req() req: any) {
     const queryValue = await this.resultsService.findKeywordsByUserId(
       req.user.id,
-      queryParam.keywordToSearch,
+      queryParam.keyword,
     );
 
     return {
