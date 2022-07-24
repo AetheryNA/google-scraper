@@ -545,9 +545,6 @@ video {
   margin-left: auto;
   margin-right: auto;
 }
-.hidden {
-  display: none;
-}
 body {
   --tw-bg-opacity: 1;
   background-color: rgb(245 246 250 / var(--tw-bg-opacity));
@@ -1108,4 +1105,6 @@ a:hover {
 }
 .view-html__wrapper {
   position: relative;
+  height: 100%;
+  width: 100%;
 }

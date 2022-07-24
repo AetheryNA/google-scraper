@@ -4,7 +4,5 @@
     <h1> Raw HTML for {{ keyword }} </h1>
     <span class="view-html__line"></span>
   </div>
-  <div class="view-html__wrapper">
-    {{{ rawHtml }}}
-  </div>
+  <iframe srcdoc="{{ rawHtml }}" class="view-html__wrapper"></iframe>
 </section>
