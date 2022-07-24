@@ -17,15 +17,23 @@ import { ScrapeProcessor } from 'src/processors/scrape.processor';
     BullModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
-        return {
-          redis: {
-            host: config.get<string>('REDIS_HOST'),
-            port: config.get<number>('REDIS_PORT'),
-            password: config.get<string>('REDIS_PASSWORD'),
+        let redisOptions: any = {
+          host: config.get<string>('REDIS_HOST'),
+          port: config.get<number>('REDIS_PORT'),
+          password: config.get<string>('REDIS_PASSWORD'),
+        };
+
+        if (process.env.NDOE_ENV == 'production') {
+          redisOptions = {
+            ...redisOptions,
             tls: {
               rejectUnauthorized: false,
             },
-          },
+          };
+        }
+
+        return {
+          redis: redisOptions,
           limiter: {
             max: 3,
             duration: 3000,
