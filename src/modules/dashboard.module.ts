@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
 import { DashboardController } from 'src/controllers/dashboard.controller';
 import { UserModule } from './user.module';
-import { DashboardService } from 'src/services/dashboard.service';
+import { KeywordsModule } from './keywords.module';
+import { ScraperModule } from './scraper.module';
 import { Keywords } from 'src/entities/keywords.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { HttpModule } from '@nestjs/axios';
@@ -13,6 +14,8 @@ import { ScrapeProcessor } from 'src/processors/scrape.processor';
   imports: [
     UserModule,
     TypeOrmModule.forFeature([Keywords]),
+    KeywordsModule,
+    ScraperModule,
     HttpModule,
     BullModule.forRootAsync({
       inject: [ConfigService],
@@ -45,7 +48,7 @@ import { ScrapeProcessor } from 'src/processors/scrape.processor';
       name: 'scrape-queue',
     }),
   ],
-  providers: [DashboardService, ScrapeProcessor],
+  providers: [ScrapeProcessor],
   controllers: [DashboardController],
 })
 export class DashboardModule {}

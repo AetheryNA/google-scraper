@@ -31,8 +31,6 @@ export class ResultsController {
   @Get('/:keyword_id/view-html')
   @Render('view-html')
   async viewKeywordHtml(@Param() param: any) {
-    console.log(param);
-
     const getKeywordRecord = await this.resultsService.findKeywordByID(
       param.keyword_id,
     );
