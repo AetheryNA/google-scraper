@@ -27,7 +27,7 @@ describe('Get google page service', () => {
 
     jest
       .spyOn(service, 'searchPagewithKeyword')
-      .mockImplementation(async () => convertHtmlToString);
+      .mockImplementation(async () => convertHtmlToString());
 
     const htmlData = await service.searchPagewithKeyword(randomWord);
 
